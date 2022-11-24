@@ -8,26 +8,36 @@ namespace Q
 {
     public class Questions
     {
-        public Questions()
+        public Questions(
+            string questionText,
+            Answers answerA,
+            Answers answerB,
+            Answers answerC,
+            Answers correctAnswer
+            )
         {
-            string questionText;
-            Answers answerA;
-            Answers answerB;
-            Answers answerC;
-            Answers correctAnswer;
+            question = questionText;
+            correctanswer = correctAnswer;
         }
         private string question;
         private string index;
-        private string correctAnswer;
+        private Answers correctanswer;
         private List<Answers> answers;
 
         public static List<Questions> Assemble()
         {
-            string questiontext = ""
+            int arraySize = 5;            
+            string[] questiontext = new string[4];
+            Answers[] answera = new Answers[4];
+            Answers[] answerb = new Answers[4];
+            Answers[] answerc = new Answers[4];
+            Answers[] correctanswer = new Answers[4];
+
 
 
             List<Questions> questions = new List<Questions>();
-            questions.Add(new Questions(questiontext, answera, answerb, answerc, correctanswer));
+            for (int i = 0; i < arraySize; i++)
+            questions.Add(new Questions(questiontext[i], answera[i], answerb[i], answerc[i], correctanswer[i]));
         }
 
         public void writeQuestion()
