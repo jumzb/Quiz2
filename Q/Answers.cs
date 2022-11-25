@@ -8,12 +8,23 @@ namespace Q
 {
     public class Answers
     {
-        private string index;
+        private int index;
         private string answer;
-        private bool correctAnswer;
+        private bool correctaswer;
+        public Answers(string Answer, int Index, bool CorrectAnswer)
+        {
+            index = Index;
+            correctaswer = CorrectAnswer;
+            answer = Answer;
+        }
+
         public void show()
         {
-            Console.WriteLine("The answer is: " + index + ") " + answer);
+            Console.WriteLine("The answer is: " + index.ToString() + ") " + answer);
+        }
+        public bool test()
+        {
+            return true;
         }
     }
 }

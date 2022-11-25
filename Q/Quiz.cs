@@ -11,13 +11,17 @@ namespace Q
         public static void Play()
         {
             List<Players> players = new List<Players>();
-            Players.Assemble(players);
-            Questions.Assemble(questions);
+            List<Questions> questions= new List<Questions>();
+            players = Players.Assemble();
+            questions = Questions.Assemble();
             foreach (var question in questions)
             {
                 foreach (var player in players)
                 {
-
+                    Console.WriteLine(player.getName + ". It's your turn to play. Please answer the following question A, B or C");
+                    question.writeQuestion();
+                    string useranswer = Questions.Ask(player, "?> ");
+                    question.getAnswer(useranswer, question);
                 }
             }
         }

@@ -8,7 +8,6 @@ public class Program
 {
 	public static void Main()
 	{
-		//Questions.Compile();
 		Quiz.Play();
 	}
 }

@@ -11,6 +11,8 @@ namespace Q
             private string name;
             private int score;
             private int index;
+            public Answers answered;
+
             public string getName
             {
                 get { return name; }
@@ -21,10 +23,10 @@ namespace Q
                 set { this.score = value; }
             }
 
-            public static void Assemble(List<Players> listPlayers)
+            public static List<Players> Assemble()
             {
-
-                Console.WriteLine("How many?");
+                List<Players> listPlayers = new List<Players>();
+                Console.WriteLine("How many players?");
                 if (Int32.TryParse(Console.ReadLine(), out int numPlayers))
                 {
                     for (int i = 0; i < numPlayers; i++)
@@ -39,12 +41,14 @@ namespace Q
                 {
                     Environment.Exit(5);
                 }
+                return listPlayers;
             }
 
             public static string newName()
             {
                 string name = "";
-                name = Questions.Ask("Name plz?");
+                Console.WriteLine("Name plz?");
+                name = Console.ReadLine();
                 return name;
             }
         }
