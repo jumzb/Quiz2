@@ -14,6 +14,7 @@ namespace Q
             List<Questions> questions= new List<Questions>();
             players = Players.Assemble();
             questions = Questions.Assemble();
+            Console.Clear();
             foreach (Questions question in questions)
             {
                 foreach (Players player in players)
