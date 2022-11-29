@@ -13,13 +13,7 @@ namespace Q
         private int correctanswer;
         public List<Answers> answers;
 
-        public static Questions newQuestion(
-            string questionText,
-            Answers answerA,
-            Answers answerB,
-            Answers answerC,
-            int correctAnswer
-            )
+        public static Questions newQuestion(string questionText, Answers answerA, Answers answerB, Answers answerC, int correctAnswer)
         {
             Questions question = new Questions();
             question.question = questionText;
@@ -28,6 +22,7 @@ namespace Q
             answers.Add(answerA);
             answers.Add(answerB);
             answers.Add(answerC);
+            question.answers = answers;
             return question;
         }
 

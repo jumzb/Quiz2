@@ -14,9 +14,9 @@ namespace Q
             List<Questions> questions= new List<Questions>();
             players = Players.Assemble();
             questions = Questions.Assemble();
-            foreach (var question in questions)
+            foreach (Questions question in questions)
             {
-                foreach (var player in players)
+                foreach (Players player in players)
                 {
                     Console.WriteLine(player.getName + ". It's your turn to play. Please answer the following question A, B or C");
                     question.writeQuestion();
