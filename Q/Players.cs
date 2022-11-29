@@ -17,10 +17,17 @@ namespace Q
             {
                 get { return name; }
             }
-            public int setScore
+            public int getScore
             {
                 get { return this.score; }
-                set { this.score = value; }
+            }
+            public void addScore()
+            {
+                this.score++;
+            }
+            public void clearScore
+            {
+                this.score = 0;
             }
 
             public static List<Players> Assemble()
