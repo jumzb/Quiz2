@@ -101,6 +101,22 @@ namespace Q
 
             return answer;
         }
+        public int getCorrectAnswer
+        {
+            get { return correctanswer; }
+        }
+
+        public void showCorrectAnswer()
+        {
+            foreach (Answers answer in this.answers)
+            {
+                if (answer.test())
+                {
+                    Console.WriteLine(answer.ToString());
+                }
+            }
+        }
+
     }
 
 }

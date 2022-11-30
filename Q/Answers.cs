@@ -20,11 +20,27 @@ namespace Q
 
         public void show()
         {
-            Console.WriteLine("The answer is: " + index.ToString() + ") " + answer);
+            Console.WriteLine(index.ToString() + ") " + answer);
         }
+
         public bool test()
         {
-            return true;
+            bool result;
+            if (correctaswer)
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+            return result;
         }
+
+        public override string ToString()
+        {
+            return answer;
+        }
+
     }
 }
