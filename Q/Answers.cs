@@ -20,7 +20,20 @@ namespace Q
 
         public void show()
         {
-            Console.WriteLine(index.ToString() + ") " + answer);
+            string letter = "";
+            switch (index)
+            {
+                case 1:
+                    letter = "A";
+                    break;
+                case 2:
+                    letter = "B";
+                    break;
+                case 3:
+                    letter = "C";
+                    break;
+            }
+            Console.WriteLine(letter + ") " + answer);
         }
 
         public bool test()
@@ -35,6 +48,11 @@ namespace Q
                 result = false;
             }
             return result;
+        }
+
+        public int getIndex
+        {
+            get { return index; }
         }
 
         public override string ToString()

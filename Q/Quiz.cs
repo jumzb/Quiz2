@@ -23,17 +23,28 @@ namespace Q
                     question.writeQuestion();
                     string useranswer = Questions.Ask(player, "Please type your answer below.");
                     player.answered = question.getAnswer(useranswer, question);
+                    ClearScreen();
                     if (player.answered.test())
                     {
-                        Console.WriteLine("correct");
+                        Console.Write("correct the answer is: ");
                     }
                     else
                     {
-                        Console.WriteLine("wrong");
+                        Console.Write("incorrect the answer is: ");
                     }
                     question.showCorrectAnswer();
+                    Console.Write("Press Enter"); ClearandPause();
                 }
             }
+        }
+        public static void ClearScreen()
+        {
+            Console.Clear();
+        }
+        public static void ClearandPause()
+        {
+            Console.ReadLine();
+            Console.Clear();
         }
     }
 }
