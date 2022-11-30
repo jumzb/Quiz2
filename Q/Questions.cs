@@ -8,18 +8,12 @@ namespace Q
 {
     public class Questions
     {
-        private string question;
-        private string index;
+        private string? question;
+        private string? index;
         private int correctanswer;
-        public List<Answers> answers;
+        public List<Answers>? answers;
 
-        public static Questions newQuestion(
-            string questionText,
-            Answers answerA,
-            Answers answerB,
-            Answers answerC,
-            int correctAnswer
-            )
+        public static Questions newQuestion(string questionText, Answers answerA, Answers answerB, Answers answerC, int correctAnswer)
         {
             Questions question = new Questions();
             question.question = questionText;
@@ -28,15 +22,16 @@ namespace Q
             answers.Add(answerA);
             answers.Add(answerB);
             answers.Add(answerC);
+            question.answers = answers;
             return question;
         }
 
         public static List<Questions> Assemble()
         {
             List<Questions> questions = new List<Questions>();
-            questions.Add(Questions.addQuestion("What is A?", "A", "B", "C", 1));
-            questions.Add(Questions.addQuestion("What is B?", "A", "B", "C", 2));
-            questions.Add(Questions.addQuestion("What is C?", "A", "B", "C", 3));
+            questions.Add(Questions.addQuestion("What's the answer to this question?", "Unknown", "Undefined", "Undescriptive", 2));
+            questions.Add(Questions.addQuestion("How you gonna do this question? 3", "1", "2", "3", 3));
+            questions.Add(Questions.addQuestion("What is the best football game to date?", "1966", "1996", "2006", 1));
             return questions;
         }
 
@@ -106,6 +101,23 @@ namespace Q
 
             return answer;
         }
+        
+        public int getCorrectAnswerIndex
+        {
+            get { return correctanswer; }
+        }
+
+        public void showCorrectAnswer()
+        {
+            foreach (Answers answer in this.answers)
+            {
+                if (answer.test())
+                {
+                    answer.show();
+                }
+            }
+        }
+
     }
 
 }
