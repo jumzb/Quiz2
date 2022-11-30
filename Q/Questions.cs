@@ -8,10 +8,10 @@ namespace Q
 {
     public class Questions
     {
-        private string question;
-        private string index;
+        private string? question;
+        private string? index;
         private int correctanswer;
-        public List<Answers> answers;
+        public List<Answers>? answers;
 
         public static Questions newQuestion(string questionText, Answers answerA, Answers answerB, Answers answerC, int correctAnswer)
         {

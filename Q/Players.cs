@@ -12,6 +12,8 @@ namespace Q
             private int score;
             private int index;
             public Answers answered;
+            public PowerUps activePowerup;
+            public List<PowerUps> powerUps;
 
             public string getName
             {
