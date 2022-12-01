@@ -10,12 +10,16 @@ namespace Q
     {
         effectType effect;
 
+        public Effects(effectType effecttype)
+        {
+            effect = effecttype;
+        }
     }
 
-    public static enum effectType
+    public enum effectType
     {
-        MissTurn;
-        Skip;
+        MissTurn,
+        Skip,
         FreePoint
     }
 }
