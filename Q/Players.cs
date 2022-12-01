@@ -49,7 +49,7 @@ namespace Q
                     listPlayers.Add(new Players());
                     listPlayers[i].index = i;
                     listPlayers[i].name = Players.newName();
-                    listPlayers[i].setScore(0);
+                    listPlayers[i].clearScore();
                 }
             }
             else
@@ -67,10 +67,10 @@ namespace Q
             return name;
         }
 
-        public void addPowerup(powerUpName type)
+        public void addPowerup(powerUpName name)
         {
             PowerUps powerup = new PowerUps();
-            
+            powerup.newPowerUp(name);
             listPowerUps.Add(powerup);
         }
             

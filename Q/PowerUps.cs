@@ -9,8 +9,8 @@ namespace Q
     public class PowerUps
     {
         bool inUse;
-        Effects effects;
-        List<Effects> effectsList;
+        Effect effect;
+        List<Effect> effectsList;
         Players owner;
         Players playerAffected;
         string name;
