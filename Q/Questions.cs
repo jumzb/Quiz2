@@ -9,7 +9,7 @@ namespace Q
     public class Questions
     {
         private string? question;
-        private string? index;
+        private int? index;
         private int correctanswer;
         public List<Answers>? answers;
 
@@ -28,11 +28,23 @@ namespace Q
 
         public static List<Questions> Assemble()
         {
-            List<Questions> questions = new List<Questions>();
-            questions.Add(Questions.addQuestion("What's the answer to this question?", "Unknown", "Undefined", "Undescriptive", 2));
-            questions.Add(Questions.addQuestion("How you gonna do this question? 3", "1", "2", "3", 3));
-            questions.Add(Questions.addQuestion("What is the best football game to date?", "1966", "1996", "2006", 1));
-            return questions;
+            QuizReader quizReader = new QuizReader();
+            quizReader.readCSV();
+            return quizReader.questions;
+            //List<Questions> questions = new List<Questions>();
+            //questions.Add(Questions.addQuestion("What's the answer to this question?", "Unknown", "Undefined", "Undescriptive", 2));
+            //questions.Add(Questions.addQuestion("How you gonna do this question? 3", "1", "2", "3", 3));
+            //questions.Add(Questions.addQuestion("What is the best football game to date?", "1966", "1996", "2006", 1));
+            //return questions;
+        }
+
+        public static Questions addQuestion2(string questiontext, List<Answers>answerlist, int correctanswer, int index)
+        {
+            Questions question = new Questions();
+            question.answers = answerlist;
+            question.correctanswer = correctanswer;
+            question.index = index;
+            return question;
         }
 
         public static Questions addQuestion(string questiontext, string answera, string answerb, string answerc, int correctanswer)
@@ -48,9 +60,9 @@ namespace Q
                 case 3: correctorno3 = true; break;
             }
 
-            Answers answerA = new Answers(answera,1,correctorno1);
-            Answers answerB = new Answers(answerb,2,correctorno2);
-            Answers answerC = new Answers(answerc,3, correctorno3);
+            Answers answerA = Answers.newAnswer(answera,0,correctorno1);
+            Answers answerB = Answers.newAnswer(answerb,1,correctorno2);
+            Answers answerC = Answers.newAnswer(answerc,2, correctorno3);
 
             return Questions.newQuestion(questiontext, answerA, answerB, answerC, correctanswer);
         }
@@ -74,7 +86,7 @@ namespace Q
         }
         public Answers getAnswer(string selectedAnswer, Questions question)
         {
-            Answers answer = new Answers("",0,false);
+            Answers answer = Answers.newAnswer("",0,false);
             switch (selectedAnswer)
             {
                 case "a":

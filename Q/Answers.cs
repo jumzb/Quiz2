@@ -11,11 +11,14 @@ namespace Q
         private int index;
         private string answer;
         private bool correctaswer;
-        public Answers(string Answer, int Index, bool CorrectAnswer)
+    
+        public static Answers newAnswer(string Answer, int Index, bool CorrectAnswer)
         {
-            index = Index;
-            correctaswer = CorrectAnswer;
-            answer = Answer;
+            Answers answer = new Answers();
+            answer.index = Index;
+            answer.correctaswer = CorrectAnswer;
+            answer.answer = Answer;
+            return answer;
         }
 
         public void show()

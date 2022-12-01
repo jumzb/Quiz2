@@ -11,7 +11,10 @@ namespace Q
         bool inUse;
         Effects effects;
         List<Effects> effectsList;
-        powerUpName name;
+        Players owner;
+        Players playerAffected;
+        string name;
+
 
         public void apply()
         {
@@ -32,7 +35,9 @@ namespace Q
 
                 case powerUpName.ShootanOpponent:
                     powerUp.name = "ShootanOpponent";
-
+                    //Effects effects = new Effects(effectType.MissTurn);
+                    //powerUp.effects = effects;
+                    break;
             }
 
             return powerUp;
