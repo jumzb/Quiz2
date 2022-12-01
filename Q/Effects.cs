@@ -8,6 +8,14 @@ namespace Q
 {
     public class Effects
     {
-                
+        effectType effect;
+
+    }
+
+    public static enum effectType
+    {
+        MissTurn;
+        Skip;
+        FreePoint
     }
 }
