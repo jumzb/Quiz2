@@ -67,7 +67,7 @@ namespace Q
             return name;
         }
 
-        public void addPowerup(powerUpType type)
+        public void addPowerup(powerUpName type)
         {
             PowerUps powerup = new PowerUps();
             
