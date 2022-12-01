@@ -41,6 +41,7 @@ namespace Q
         public static Questions addQuestion2(string questiontext, List<Answers>answerlist, int correctanswer, int index)
         {
             Questions question = new Questions();
+            question.question = questiontext;
             question.answers = answerlist;
             question.correctanswer = correctanswer;
             question.index = index;
