@@ -13,7 +13,7 @@ namespace Q
             private int index;
             public Answers answered;
             public PowerUps activePowerup;
-            public List<PowerUps> powerUps;
+            private List<PowerUps> powerUps;
 
             public string getName
             {
@@ -60,5 +60,7 @@ namespace Q
                 name = Console.ReadLine();
                 return name;
             }
+
+            
         }
 }

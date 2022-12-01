@@ -8,6 +8,6 @@ namespace Q
 {
     public class Effects
     {
-
+                
     }
 }
