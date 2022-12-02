@@ -16,7 +16,7 @@ namespace Q
    //     }
    // }
 
-    public enum Effect
+    public enum Effects
     {
         MissTurn,
         Skip,

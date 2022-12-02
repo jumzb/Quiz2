@@ -9,8 +9,8 @@ namespace Q
     public class PowerUps
     {
         bool inUse;
-        Effect effect;
-        List<Effect> effectsList;
+        Effects effect;
+        List<Effects> effectsList;
         Players owner;
         Players playerAffected;
         string name;
@@ -29,7 +29,7 @@ namespace Q
             {
                 case powerUpName.ShootYourNeighbour:
                     powerUp.name = "ShootYourNeighbour";
-                    Effects effects = new Effects(effectType.MissTurn);
+                    effect = Effects.MissTurn;
                     powerUp.effects = effects;
                     break;
 
