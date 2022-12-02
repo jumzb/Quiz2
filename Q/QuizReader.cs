@@ -28,15 +28,6 @@ namespace Q
                     {
                         string[] fields = parser.ReadFields();
                         i++;
-
-                        //if (i == 0)
-                        //{
-                        //    string heading1 = fields[0];
-                        //    string heading2 = fields[1];
-                        //    string heading3 = fields[2];
-                        //    string heading4 = fields[3];
-                        //}
-
                         string q = fields[0];
                         string a1 = fields[1];
                         string a2 = fields[2];
@@ -50,23 +41,23 @@ namespace Q
                         {
                             case "1":
                                 answer1 = Answers.newAnswer(a1, 0, true);
-                                answer2 = Answers.newAnswer(a2, 0, false);
-                                answer3 = Answers.newAnswer(a3, 0, false);
+                                answer2 = Answers.newAnswer(a2, 1, false);
+                                answer3 = Answers.newAnswer(a3, 2, false);
                                 break;
                             case "2":
                                 answer1 = Answers.newAnswer(a1, 0, false);
-                                answer2 = Answers.newAnswer(a2, 0, true);
-                                answer3 = Answers.newAnswer(a3, 0, false);
+                                answer2 = Answers.newAnswer(a2, 1, true);
+                                answer3 = Answers.newAnswer(a3, 2, false);
                                 break;
                             case "3":
                                 answer1 = Answers.newAnswer(a1, 0, false);
-                                answer2 = Answers.newAnswer(a2, 0, false);
-                                answer3 = Answers.newAnswer(a3, 0, true);
+                                answer2 = Answers.newAnswer(a2, 1, false);
+                                answer3 = Answers.newAnswer(a3, 2, true);
                                 break;
                             default:
-                                answer1 = Answers.newAnswer(a1, 0, true);
-                                answer2 = Answers.newAnswer(a2, 0, false);
-                                answer3 = Answers.newAnswer(a3, 0, false);
+                                answer1 = Answers.newAnswer(a1, 0, false);
+                                answer2 = Answers.newAnswer(a2, 1, false);
+                                answer3 = Answers.newAnswer(a3, 2, false);
                                 break;
                         }
 
@@ -75,8 +66,8 @@ namespace Q
                         listAnswers.Add(answer2);
                         listAnswers.Add(answer3);
 
-                        Questions question = new Questions();
-                        question = Questions.addQuestion(q, listAnswers, intcorrect, i);
+                        //Questions question = new Questions();
+                        Questions question = Questions.addQuestion(q, listAnswers, intcorrect, i);
                         questions.Add(question);
                     }
                }

@@ -10,9 +10,10 @@ namespace Q
     {
         public static void Play()
         {
-            List<Players> players = new List<Players>();
+            static public List<Players> players = new List<Players>();
             List<Questions> questions = new List<Questions>();
             players = Players.Assemble();
+            ClearScreen();
             questions = Questions.Assemble();
            //Console.Clear();
             foreach (Questions question in questions)

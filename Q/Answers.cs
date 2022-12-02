@@ -26,17 +26,17 @@ namespace Q
             string letter = "";
             switch (index)
             {
-                case 1:
+                case 0:
                     letter = "A";
                     break;
-                case 2:
+                case 1:
                     letter = "B";
                     break;
-                case 3:
+                case 2:
                     letter = "C";
                     break;
             }
-            Console.WriteLine(letter + ") " + answer);
+            Console.WriteLine(letter + ". " + answer);
         }
 
         public bool test()

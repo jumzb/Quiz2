@@ -20,7 +20,7 @@ namespace Q
         {
 
         }
-        public PowerUps newPowerUp(powerUpName powerupname)
+        public PowerUps addPowerUp(powerUpName powerupname, Players currentPlayer)
         {
             PowerUps powerUp = new PowerUps();
             powerUp.inUse = false;
@@ -28,15 +28,16 @@ namespace Q
             switch (powerupname)
             {
                 case powerUpName.ShootYourNeighbour:
-                    powerUp.name = "ShootYourNeighbour";
+                    powerUp.name = "Shoot Your Neighbour";
                     effect = Effects.MissTurn;
-                    powerUp.effects = effects;
+                    powerUp.effect = effect;
+                    // playerAffected = 
                     break;
 
                 case powerUpName.ShootanOpponent:
-                    powerUp.name = "ShootanOpponent";
-                    //Effects effects = new Effects(effectType.MissTurn);
-                    //powerUp.effects = effects;
+                    powerUp.name = "Shoot an Opponent";
+                    effect = Effects.MissTurn;
+                    powerUp.effect = effect;
                     break;
             }
 
