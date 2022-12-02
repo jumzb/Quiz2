@@ -20,6 +20,9 @@ namespace Q
     {
         MissTurn,
         Skip,
-        FreePoint
+        FreePoint,
+        StealPoint,
+        KillPoint,
+        KillMultiplePoints
     }
 }

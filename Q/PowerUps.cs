@@ -10,17 +10,18 @@ namespace Q
     {
         bool inUse;
         Effects effect;
-        List<Effects> effectsList;
+       // List<Effects> effectsList;
         Players owner;
-        Players playerAffected;
+       // Players playerAffected;
         string name;
-
+        string tagLine;
 
         public void apply()
         {
 
         }
-        public PowerUps addPowerUp(powerUpName powerupname, Players currentPlayer)
+
+        public static PowerUps addPowerUp(powerUpName powerupname, Players currentPlayer)
         {
             PowerUps powerUp = new PowerUps();
             powerUp.inUse = false;
@@ -29,15 +30,37 @@ namespace Q
             {
                 case powerUpName.ShootYourNeighbour:
                     powerUp.name = "Shoot Your Neighbour";
-                    effect = Effects.MissTurn;
-                    powerUp.effect = effect;
+                    powerUp.effect = Effects.KillPoint;
+                    string tagLine = "You shot your neighbour! Pew Pew";
                     // playerAffected = 
                     break;
 
                 case powerUpName.ShootanOpponent:
                     powerUp.name = "Shoot an Opponent";
-                    effect = Effects.MissTurn;
-                    powerUp.effect = effect;
+                    powerUp.effect = Effects.KillPoint;
+                    string tagLine = "Ooh damn! Shots fired!";
+                    break;
+
+                case powerUpName.GoWithout:
+                    powerUp.name = "Go Without";
+                    powerUp.effect = Effects.KillPoint;
+                    string tagLine = "Sitting this one out huh?";
+                    break;
+
+                case powerUpName.GreenShell:
+                    powerUp.name = "Green Shell";
+                    powerUp.effect = Effects.MissTurn;
+                    string tagLine = "No copyright Mario references here, just a ";
+                    break;
+
+                case powerUpName.RedShell:
+                    powerUp.name = "Red Shell";
+                    powerUp.effect = Effects.MissTurn;
+                    break;
+
+                case powerUpName.BigUp:
+                    powerUp.name = "Big Up";
+                    powerUp.effect = Effects.MissTurn;
                     break;
             }
 
@@ -47,10 +70,12 @@ namespace Q
 
     public enum powerUpName
     {
-        ShootYourNeighbour, // Next person misses a turn
-        ShootanOpponent, // Choose someone to miss a turn
-        GoWithout, // You skip a turn
+        ShootYourNeighbour, // Next person loses a point
+        ShootanOpponent, // Choose someone to lose a point
+        GoWithout, // You skip a turn and gain the point
+        GreenShell, // Next person loses a turn
+        RedShell, // Choose someone to lose a turn
+        BigUp, // Nominate a player to have double points for a round
         Bomb, // everyone misses a turn
-
     }
 }

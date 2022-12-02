@@ -10,7 +10,7 @@ namespace Q
     {
         public static void Play()
         {
-            static public List<Players> players = new List<Players>();
+            List<Players> players = new List<Players>();
             List<Questions> questions = new List<Questions>();
             players = Players.Assemble();
             ClearScreen();
