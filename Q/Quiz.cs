@@ -13,13 +13,23 @@ namespace Q
             List<Players> players = new List<Players>();
             List<Questions> questions = new List<Questions>();
             players = Players.Assemble();
-            ClearScreen();
             questions = Questions.Assemble();
-           //Console.Clear();
+            ClearScreen();
+            int countTo3 = 0
             foreach (Questions question in questions)
             {
                 foreach (Players player in players)
                 {
+                    countTo3++
+                    if (countTo3 == 3) 
+                    {
+                        countTo3 = 0
+                        player.addPowerup();  
+                    //} 
+                    //else 
+                    //{ 
+                        
+                    //}
                     Console.WriteLine(player.getName + ". It's your turn to play. Please answer the following question A, B or C");
                     question.writeQuestion();
                     string useranswer = Questions.Ask(player, "Please type your answer below.");
@@ -34,7 +44,7 @@ namespace Q
                         Console.Write("incorrect the answer is: ");
                     }
                     question.showCorrectAnswer();
-                    Console.Write("Press Enter"); ClearandPause();
+                    Console.Write("Press Enter"); PauseandClear();
                 }
             }
         }
@@ -42,7 +52,7 @@ namespace Q
         {
             Console.Clear();
         }
-        public static void ClearandPause()
+        public static void PauseandClear()
         {
             Console.ReadLine();
             Console.Clear();

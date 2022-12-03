@@ -6,16 +6,6 @@ using System.Threading.Tasks;
 
 namespace Q
 {
-   //public class Effects
-   // {
-   //     effectType effect;
-
-   //     public Effects(effectType effecttype)
-   //     {
-   //         effect = effecttype;
-   //     }
-   // }
-
     public enum Effects
     {
         MissTurn,

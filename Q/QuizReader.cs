@@ -67,7 +67,7 @@ namespace Q
                         listAnswers.Add(answer3);
 
                         //Questions question = new Questions();
-                        Questions question = Questions.addQuestion(q, listAnswers, intcorrect, i);
+                        Questions question = Questions.newQuestion(q, listAnswers, intcorrect, i);
                         questions.Add(question);
                     }
                }

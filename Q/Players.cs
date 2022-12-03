@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,9 +25,13 @@ namespace Q
             get { return this.score; }
         }
 
-        public void addScore()
+        public void addPoint()
         {
             this.score++;
+        }
+        public void losePoint()
+        {
+            this.score--;
         }
         public void clearScore()
         {
@@ -36,6 +41,9 @@ namespace Q
         public void setScore(int val)
         {
             this.score = val;
+        }
+        public void skipTurn()
+        {
         }
 
         public static List<Players> Assemble()
@@ -69,10 +77,29 @@ namespace Q
 
         public void addPowerup(powerUpName name)
         {
-            PowerUps powerup = new PowerUps();
-            powerup.newPowerUp(name);
+            PowerUps powerup = PowerUps.newPowerUp(name);
             listPowerUps.Add(powerup);
         }
-            
+
+        public void usePowerUp(PowerUps powerUp, Players chosenPlayer)
+        {
+            switch (powerUp.getPowerUpName)
+            {
+                case powerUpName.ShootYourNeighbour:
+                case powerUpName.ShootanOpponent:
+                    chosenPlayer.losePoint();
+                    break;
+
+                case powerUpName.GreenShell:
+                case powerUpName.RedShell:
+                case powerUpName.GoWithout:
+                    chosenPlayer.skipTurn();
+                    break;
+
+                case powerUpName.BigUp:
+                    chosenPlayer.addPoint();               
+                    break;
+            }
+        }
     }
 }

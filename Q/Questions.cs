@@ -49,7 +49,8 @@ namespace Q
         }
         public Answers getAnswer(string selectedAnswer, Questions question)
         {
-            Answers answer = new Answers() //.newAnswer("",0,false);
+            Answers answer = new Answers()
+                ; //.newAnswer("",0,false);
             switch (selectedAnswer)
             {
                 case "a":
