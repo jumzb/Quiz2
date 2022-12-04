@@ -84,17 +84,24 @@ namespace Q
             listPowerUps.Add(powerup);
         }
 
+
+
         public void usePowerUp(PowerUps powerUp, PlayerSelector player)
         {
             switch (powerUp.getPowerUpName)
             {
                 case powerUpName.ShootYourNeighbour:
+                    this.losePoint();
+                    break;
+
                 case powerUpName.ShootanOpponent:
                     player.losePoint();
                     break;
 
                 case powerUpName.GreenShell:
+
                 case powerUpName.RedShell:
+
                 case powerUpName.GoWithout:
                     player.skipTurn();
                     break;
