@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+//using Q.PowerUps;
 
 namespace Q
 {
@@ -14,7 +16,7 @@ namespace Q
         private int index;
         public Answers answered;
         public PowerUps activePowerup;
-        private List<PowerUps> listPowerUps;
+        public List<PowerUps> listPowerUps;
 
         public string getName
         {
@@ -57,6 +59,7 @@ namespace Q
                     listPlayers.Add(new Players());
                     listPlayers[i].index = i;
                     listPlayers[i].name = Players.newName();
+                    listPlayers[i].listPowerUps= new List<PowerUps>();
                     listPlayers[i].clearScore();
                 }
             }
@@ -81,23 +84,23 @@ namespace Q
             listPowerUps.Add(powerup);
         }
 
-        public void usePowerUp(PowerUps powerUp, Players chosenPlayer)
+        public void usePowerUp(PowerUps powerUp, PlayerSelector player)
         {
             switch (powerUp.getPowerUpName)
             {
                 case powerUpName.ShootYourNeighbour:
                 case powerUpName.ShootanOpponent:
-                    chosenPlayer.losePoint();
+                    player.losePoint();
                     break;
 
                 case powerUpName.GreenShell:
                 case powerUpName.RedShell:
                 case powerUpName.GoWithout:
-                    chosenPlayer.skipTurn();
+                    player.skipTurn();
                     break;
 
                 case powerUpName.BigUp:
-                    chosenPlayer.addPoint();               
+                    player.addPoint();               
                     break;
             }
         }

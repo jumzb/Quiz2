@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Q;
 
 namespace Q
 {
@@ -15,21 +16,24 @@ namespace Q
             players = Players.Assemble();
             questions = Questions.Assemble();
             ClearScreen();
-            int countTo3 = 0
+            int countTo3 = 0;
             foreach (Questions question in questions)
             {
+                countTo3++;
                 foreach (Players player in players)
                 {
-                    countTo3++
-                    if (countTo3 == 3) 
+                    
+                    if (countTo3 == 1)
                     {
-                        countTo3 = 0
-                        player.addPowerup();  
-                    //} 
-                    //else 
-                    //{ 
-                        
-                    //}
+                        Random rnd = new Random();
+                        int chooseMeaPowerUp = rnd.Next(7);
+                        //countTo3 = 0;
+                        //player.addPowerup(powerUpName[]);
+                        Array powerupnames = typeof(powerUpName).GetEnumValues();
+                        powerUpName powerup = (powerUpName)powerupnames.GetValue(chooseMeaPowerUp);
+                        player.addPowerup(powerup);
+                        Console.WriteLine(powerup.ToString());
+                    }
                     Console.WriteLine(player.getName + ". It's your turn to play. Please answer the following question A, B or C");
                     question.writeQuestion();
                     string useranswer = Questions.Ask(player, "Please type your answer below.");
