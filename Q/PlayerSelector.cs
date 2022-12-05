@@ -18,9 +18,32 @@ namespace Q
         public Players getAffectedPlayer(PowerUps powerup)
         {
             powerUpName powerupname;
+            powerupname = powerup.getPowerUpName;
             switch (powerupname)
             {
-                case powerUpName.ShootYourNeighbour
+                case powerUpName.ShootYourNeighbour:
+                    
+                    break;
+
+                case powerUpName.ShootanOpponent:
+               
+                    break;
+
+                case powerUpName.GoWithout:
+            
+                    break;
+
+                case powerUpName.GreenShell:
+             
+                    break;
+
+                case powerUpName.RedShell:
+                 
+                    break;
+
+                case powerUpName.BigUp:
+                
+                    break;
             }
         }
             

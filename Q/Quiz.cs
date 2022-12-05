@@ -49,6 +49,9 @@ namespace Q
                     string s = MyConsole.ReadLine("Test");
                     int p = Int32.Parse(s);
                     PlayerSelector playerSelector = new PlayerSelector();
+                    playerSelector.quiz = this;
+                    playerSelector.players = players;
+                    playerSelector.player = player;
                     player.usePowerUp(player.listPowerUps[p], playerSelector);
                     //
                     ClearScreen();

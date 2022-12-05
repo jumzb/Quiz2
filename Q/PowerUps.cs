@@ -30,6 +30,7 @@ namespace Q
         public static PowerUps newPowerUp(powerUpName powerupname)
         {
             PowerUps powerUp = new PowerUps();
+            powerUp.powerupname = powerupname;
             powerUp.inUse = false;
             string tagLine;
             switch (powerupname)
