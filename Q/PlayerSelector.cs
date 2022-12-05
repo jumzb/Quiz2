@@ -10,14 +10,18 @@ namespace Q
     {
         // pass player to class
         // return correct player based on enum
-        powerUpName powerUp;
-        Players player;
-        Quiz quiz;
-        List<Players> players;
+        //public powerUpName powerUp;
+        public Players player;
+        public Quiz quiz;
+        public List<Players> players;
 
-        public static Players affectedPlayer()
+        public Players getAffectedPlayer(PowerUps powerup)
         {
-
+            powerUpName powerupname;
+            switch (powerupname)
+            {
+                case powerUpName.ShootYourNeighbour
+            }
         }
             
     }

@@ -39,6 +39,18 @@ namespace Q
                     question.writeQuestion();
                     string useranswer = Questions.Ask(player, "Please type your answer below.");
                     player.answered = question.getAnswer(useranswer, question);
+                    // use powerups
+                    string[] playerPowerUps = player.getPowerUpList;
+                    foreach (string powerupstring in playerPowerUps)
+                    {
+                        Console.WriteLine(powerupstring);
+                    }
+                    Console.WriteLine("Use a powerup? (choose number)");
+                    string s = MyConsole.ReadLine("Test");
+                    int p = Int32.Parse(s);
+                    PlayerSelector playerSelector = new PlayerSelector();
+                    player.usePowerUp(player.listPowerUps[p], playerSelector);
+                    //
                     ClearScreen();
                     if (player.answered.test())
                     {

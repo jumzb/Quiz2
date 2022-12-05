@@ -70,6 +70,30 @@ namespace Q
             return listPlayers;
         }
 
+        public string[] getPowerUpList
+        {
+            get
+            {
+                int i=0;
+                if (listPowerUps != null)
+                {
+                    string[] poweruplist = new string[listPowerUps.Count + 1];
+                    foreach (PowerUps powerup in listPowerUps)
+                    {
+                        poweruplist[i] = powerup.getName;
+                        i++;
+                    }
+                    return poweruplist;
+                }
+                else 
+                {
+                    string[] nopowerups = new string[1];
+                    nopowerups[0] = "No Powerups";
+                    return nopowerups;
+                }
+            }
+        }
+
         public static string newName()
         {
             string name = "";
@@ -86,12 +110,15 @@ namespace Q
 
 
 
-        public void usePowerUp(PowerUps powerUp, PlayerSelector player)
+        public void usePowerUp(PowerUps powerUp, PlayerSelector playerSelector)
         {
+            //PlayerSelector playerSelector = new PlayerSelector();
+            Players player = new Players();
             switch (powerUp.getPowerUpName)
-            {
+            {                
                 case powerUpName.ShootYourNeighbour:
-                    this.losePoint();
+                    player = playerSelector.getAffectedPlayer(powerUp);
+                    player.losePoint();
                     break;
 
                 case powerUpName.ShootanOpponent:
