@@ -100,6 +100,7 @@ namespace Q
 
                 case powerUpName.GreenShell:
 
+                    break;
                 case powerUpName.RedShell:
 
                 case powerUpName.GoWithout:

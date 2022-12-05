@@ -9,6 +9,7 @@ namespace Q
 {
     public class Quiz
     {
+       
         public static void Play()
         {
             List<Players> players = new List<Players>();

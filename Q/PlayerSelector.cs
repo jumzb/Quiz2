@@ -12,6 +12,13 @@ namespace Q
         // return correct player based on enum
         powerUpName powerUp;
         Players player;
+        Quiz quiz;
+        List<Players> players;
 
+        public static Players affectedPlayer()
+        {
+
+        }
+            
     }
 }
