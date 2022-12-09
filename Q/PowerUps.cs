@@ -37,39 +37,39 @@ namespace Q
             {
                 case powerUpName.ShootYourNeighbour:
                     powerUp.name = "Shoot Your Neighbour";
-                    powerUp.effect = Effects.KillPoint;
+                    //powerUp.effect = Effects.KillPoint;
                     tagLine = "You shot your neighbour! Pew Pew";
                   //  powerUp.playerAffected = allPlayers[(allPlayers.IndexOf(currentPlayer)+1)];
                     break;
 
                 case powerUpName.ShootanOpponent:
                     powerUp.name = "Shoot an Opponent";
-                    powerUp.effect = Effects.KillPoint;
+                    //powerUp.effect = Effects.KillPoint;
                     tagLine = "Ooh damn! Shots fired!";
                     break;
 
                 case powerUpName.GoWithout:
                     powerUp.name = "Go Without";
-                    powerUp.effect = Effects.KillPoint;
+                    //powerUp.effect = Effects.KillPoint;
                     tagLine = "Sitting this one out huh?";
                     break;
 
                 case powerUpName.GreenShell:
                     powerUp.name = "Green Shell";
-                    powerUp.effect = Effects.MissTurn;
+                    //powerUp.effect = Effects.MissTurn;
                     tagLine = "No copyright Mario references here, just an innocent shell";
                     break;
 
                 case powerUpName.RedShell:
                     powerUp.name = "Red Shell";
-                    powerUp.effect = Effects.MissTurn;
+                    //powerUp.effect = Effects.MissTurn;
                     tagLine = "No copyright Mario references here, just an innocent shell";
                     break;
 
                 case powerUpName.BigUp:
                     powerUp.name = "Big Up";
-                    powerUp.effect = Effects.MissTurn;
-                    tagLine = "Bigups to ";
+                    //powerUp.effect = Effects.MissTurn;
+                    tagLine = "Big up yoself";
                     break;
             }
 
