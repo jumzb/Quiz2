@@ -38,14 +38,14 @@ namespace Q
                 case powerUpName.ShootYourNeighbour:
                     powerUp.name = "Shoot Your Neighbour";
                     //powerUp.effect = Effects.KillPoint;
-                    tagLine = "You shot your neighbour! Pew Pew";
+                    tagLine = "You lose! -1 Point ";
                   //  powerUp.playerAffected = allPlayers[(allPlayers.IndexOf(currentPlayer)+1)];
                     break;
 
                 case powerUpName.ShootanOpponent:
                     powerUp.name = "Shoot an Opponent";
                     //powerUp.effect = Effects.KillPoint;
-                    tagLine = "Ooh damn! Shots fired!";
+                    tagLine = "You lose! -1 Point ";
                     break;
 
                 case powerUpName.GoWithout:
@@ -57,19 +57,24 @@ namespace Q
                 case powerUpName.GreenShell:
                     powerUp.name = "Green Shell";
                     //powerUp.effect = Effects.MissTurn;
-                    tagLine = "No copyright Mario references here, just an innocent shell";
+                    tagLine = "Skip a turn friend";
                     break;
 
                 case powerUpName.RedShell:
                     powerUp.name = "Red Shell";
                     //powerUp.effect = Effects.MissTurn;
-                    tagLine = "No copyright Mario references here, just an innocent shell";
+                    tagLine = "Not your friend guy? Skip a turn buddy";
                     break;
 
                 case powerUpName.BigUp:
                     powerUp.name = "Big Up";
                     //powerUp.effect = Effects.MissTurn;
                     tagLine = "Big up yoself";
+                    break;
+
+                case powerUpName.Bomb:
+                    powerUp.name = "Bomb";
+                    tagLine = "KAABBOOOM!";
                     break;
             }
 

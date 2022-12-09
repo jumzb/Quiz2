@@ -6,6 +6,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 //using Q.PowerUps;
 
 namespace Q
@@ -15,11 +16,27 @@ namespace Q
         private string name;
         private int score;
         private int index;
-        private bool skipFlag;
+        public bool skipFlag;
         public Answers answered;
         public PowerUps activePowerup;
         public List<PowerUps> listPowerUps;
-        
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as Players;
+
+            if (other == null)
+            {
+                return false;
+            }
+
+            if (name != other.name || index != other.index)
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public string getName
         {
@@ -47,10 +64,20 @@ namespace Q
         {
             this.score = val;
         }
+
         public void skipTurn()
         {
-            skipFlag= true;
+            skipFlag = true;
         }
+
+        public static string newName()
+        {
+            string name = "";
+            Console.WriteLine("Name plz?");
+            name = Console.ReadLine();
+            return name;
+        }
+
 
         public static List<Players> Assemble()
         {
@@ -73,6 +100,8 @@ namespace Q
             }
             return listPlayers;
         }
+
+        ///////////////////// PLAYER POWERUPS
 
         public bool checkForPowerups()
         {
@@ -150,14 +179,6 @@ namespace Q
             }
         }
 
-        public static string newName()
-        {
-            string name = "";
-            Console.WriteLine("Name plz?");
-            name = Console.ReadLine();
-            return name;
-        }
-
         public void addPowerup(powerUpName name)
         {
             PowerUps powerup = PowerUps.newPowerUp(name);
@@ -170,40 +191,68 @@ namespace Q
             //playerSelector.allPlayers = allPlayers;
             //playerSelector.currentPlayer = this;
             Players player = new Players();
+            MyConsole.ReadLine(this.getName + " used " + powerUp.getName + ".");
+            MyConsole.ReadLine("It's very effective");
+            Quiz.ClearScreen();
+
             switch (powerUp.getPowerUpName)
             {
                 case powerUpName.ShootYourNeighbour:
                     // player = getAffectedPlayer(allPlayers);
                     player = getNextPlayer(allPlayers);
                     player.losePoint();
+                    MyConsole.ReadLine(player.getName + ". You lose!");
+                    MyConsole.ReadLine("-1 point");
                     break;
 
                 case powerUpName.ShootanOpponent:
                     player = choosePlayer(allPlayers);
                     player.losePoint();
+                    MyConsole.ReadLine(player.getName + ". You lose!");
+                    MyConsole.ReadLine("-1 point");
                     break;
 
                 case powerUpName.GreenShell:
                     player = getNextPlayer(allPlayers);
                     player.skipTurn();
+                    MyConsole.ReadLine(player.getName + ". Skip a turn friend.");
+                    MyConsole.ReadLine("Not my friend buddy? Skip a turn anyway.");
                     break;
 
                 case powerUpName.RedShell:
                     //  player = getAffectedPlayer(allPlayers);
                     player = choosePlayer(allPlayers);
                     player.skipTurn();
+                    MyConsole.ReadLine(player.getName + ". Skip a turn buddy.");
+                    MyConsole.ReadLine("Not my friend pal? Skip a turn anyway.");
                     break;
 
                 case powerUpName.GoWithout:
                     skipTurn();
+                    MyConsole.ReadLine(player.getName + ". Just gonna sit this one out?");
                     break;
 
                 case powerUpName.BigUp:
+                    MyConsole.ReadLine(player.getName + " big up yoself!");
                     addPoint();
                     break;
+
+                case powerUpName.Bomb:
+                    foreach (Players players in allPlayers)
+                    {
+                        if (!(players.Equals(player)))
+                        {
+                            players.skipTurn();
+                        }
+                    }
+                    break;
             }
+
             listPowerUps.RemoveAt(listPowerUps.IndexOf(powerUp));
+            Quiz.ClearScreen();
         }
+
+        ////////////////////////////// PLAYER SELECTOR
 
         private Players choosePlayer(List<Players> allPlayers)
         {
@@ -211,7 +260,7 @@ namespace Q
             foreach (Players player in allPlayers)
             {
                 i++;
-                Console.WriteLine(i.ToString() + player.getName);
+                Console.WriteLine(i.ToString() + ". " + player.getName);
             }
 
             string playerinfo = MyConsole.ReadLine("Please select a player");
@@ -219,17 +268,20 @@ namespace Q
             {
                 if (Int32.TryParse(playerinfo, out int playerselected))
                 {
-                    if (playerselected <= allPlayers.Count + 1)
+                    if (playerselected <= allPlayers.Count)
                     {
-                        return allPlayers[playerselected];
+                        int playerindex = playerselected - 1;
+                        return allPlayers[playerindex];
                     }
                 }
                 else
                 {
                     Console.WriteLine("YOU LOSE! ERROR: 0xUHAD1JOB");
+                    Console.ReadLine();
                     return null;
                 }
                 Console.WriteLine("Out of loop. ERROR: CODER IS WHACK");
+                Console.ReadLine();
                 return null;
             }
             else

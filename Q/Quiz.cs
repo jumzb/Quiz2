@@ -26,41 +26,49 @@ namespace Q
                 currentPlayerGetsPowerUp++;
                 foreach (Players player in players)
                 {
-                    // Give powerups
-                    if (currentPlayerGetsPowerUp == 2)
+                    if (!player.skipFlag)
                     {
-                        currentPlayerGetsPowerUp = 0;
-                        player.earnRandomPowerup();
-                    }
+                        // Give powerups
+                        if (currentPlayerGetsPowerUp == 2)
+                        {
+                            currentPlayerGetsPowerUp = 0;
+                            player.earnRandomPowerup();
+                        }
+                        // Player turn
+                        Console.WriteLine(player.getName + ". It's your turn to play. Please answer the following question A, B or C");
+                        question.writeQuestion();
+                        string useranswer = Questions.Ask(player, "Please type your answer below.");
+                        player.answered = question.getAnswer(useranswer, question);
+                        ClearScreen();
+                        if (player.answered.test())
+                        {
+                            Console.Write("correct the answer is: ");
+                            player.addPoint();
+                        }
+                        else
+                        {
+                            Console.Write("incorrect the answer is: ");
+                        }
+                        question.showCorrectAnswer();
+                        PauseandClear();
+                        // Player powerup turn
+                        if (player.checkForPowerups())
+                        {
+                            player.showPowerUps();
+                            PowerUps selectedpowerup = player.selectPowerUp();
+                            player.usePowerUp(selectedpowerup, players);
+                        }
 
-                    // Player turn
-                    Console.WriteLine(player.getName + ". It's your turn to play. Please answer the following question A, B or C");
-                    question.writeQuestion();
-                    string useranswer = Questions.Ask(player, "Please type your answer below.");
-                    player.answered = question.getAnswer(useranswer, question);
-                    ClearScreen();
-                    if (player.answered.test())
-                    {
-                        Console.Write("correct the answer is: ");
-                        player.addPoint();
+                        // End of player turn
                     }
                     else
                     {
-                        Console.Write("incorrect the answer is: ");
+                        Console.WriteLine(player.getName + " skipped a turn :( sad day");
+                        player.skipFlag = false;
                     }
-                    question.showCorrectAnswer();
                     PauseandClear();
-
-                    // Player powerup turn
-                    if (player.checkForPowerups())
-                    {
-                        player.showPowerUps();
-                        PowerUps selectedpowerup = player.selectPowerUp();
-                        player.usePowerUp(selectedpowerup, players);
-                    }
-
-                    // End of player turn
                 }
+                PauseandClear();
                 // END OF  ROUND - SCORES ON THE DOORS
                 Console.WriteLine("-- THE SCORES ON THE DOORS --");
                 foreach (Players player in players)
