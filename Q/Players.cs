@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,6 +71,53 @@ namespace Q
             return listPlayers;
         }
 
+        public bool checkForPowerups()
+        {
+            bool isNullOrEmpty = listPowerUps?.Any() != true;
+            return !isNullOrEmpty;
+            //{
+            //    if (!isNullOrEmpty)
+            //    {
+            //        return true;
+            //    }
+            //    else
+            //    {
+            //        return false;
+            //    }
+            //}
+        }
+
+        public void showPowerUps()
+        {
+            string[] playerPowerUps = getPowerUpList;
+            int i = 0;
+            foreach (string powerupstring in playerPowerUps)
+            {
+                Console.WriteLine(i.ToString() + ". " + powerupstring);
+            }
+        }
+
+        public PowerUps selectPowerUp()
+        {
+            Console.WriteLine("Use a powerup? (choose number)");
+            string s = Console.ReadLine();
+            if (Int32.TryParse(s, out int intpowerupselected)) 
+            {
+                if (intpowerupselected <= listPowerUps.Count - 1);
+            }
+            return listPowerUps[intpowerupselected];
+        }
+
+        public void earnRandomPowerup()
+        {
+            Random rnd = new Random();
+            int chooseMeaPowerUp = rnd.Next(7);
+            Array powerupnames = typeof(powerUpName).GetEnumValues();
+            powerUpName powerup = (powerUpName)powerupnames.GetValue(chooseMeaPowerUp);
+            addPowerup(powerup);
+            Console.WriteLine("You gained a " + powerup.ToString()); 
+        }
+
         public string[] getPowerUpList
         {
             get
@@ -108,36 +156,116 @@ namespace Q
             listPowerUps.Add(powerup);
         }
 
-
-
-        public void usePowerUp(PowerUps powerUp, PlayerSelector playerSelector)
+        public void usePowerUp(PowerUps powerUp, List<Players> allPlayers)
         {
             //PlayerSelector playerSelector = new PlayerSelector();
+            //playerSelector.allPlayers = allPlayers;
+            //playerSelector.currentPlayer = this;
             Players player = new Players();
             switch (powerUp.getPowerUpName)
             {                
                 case powerUpName.ShootYourNeighbour:
-                    player = playerSelector.getAffectedPlayer(powerUp);
-                    player.losePoint();
-                    break;
-
-                case powerUpName.ShootanOpponent:
+                
+                   // player = getAffectedPlayer(allPlayers);
+                    player = 
                     player.losePoint();
                     break;
 
                 case powerUpName.GreenShell:
-
-                    break;
                 case powerUpName.RedShell:
-
-                case powerUpName.GoWithout:
+                    player = getAffectedPlayer(allPlayers);
                     player.skipTurn();
                     break;
 
+                case powerUpName.GoWithout:
+                    skipTurn();
+                    break;
+
                 case powerUpName.BigUp:
+                    player = getAffectedPlayer(allPlayers);
                     player.addPoint();               
                     break;
             }
         }
+
+        //public Players getAffectedPlayer(PowerUps powerup, List<Players> allPlayers)
+        //{
+        //    Players affectedPlayer = new Players();
+        //    powerUpName powerupname;
+        //    powerupname = powerup.getPowerUpName;
+        //    switch (powerupname)
+        //    {
+        //        case powerUpName.ShootYourNeighbour:
+        //        case powerUpName.GreenShell:
+        //            affectedPlayer = getNextPlayer(allPlayers);
+        //            break;
+
+        //        case powerUpName.ShootanOpponent:
+        //        case powerUpName.RedShell:
+        //        case powerUpName.BigUp:
+        //            affectedPlayer = choosePlayer(allPlayers);
+        //            break;
+
+        //        case powerUpName.GoWithout:
+        //            affectedPlayer = this;
+        //            break;
+        //    }
+        //    return affectedPlayer;
+        //}
+
+        private Players choosePlayer(List<Players> allPlayers)
+        {
+            int i = 0;
+            foreach (Players player in allPlayers)
+            {
+                i++;
+                Console.WriteLine(i.ToString() + player.getName);
+            }
+            string playerinfo = MyConsole.ReadLine("Please select a player");
+            if (Int32.TryParse(playerinfo, out int playerselected))
+            {
+                if (playerselected <= allPlayers.Count + 1)
+                {
+                    return allPlayers[playerselected];
+                }
+            }
+            else
+            {
+                Console.WriteLine("YOU LOSE! ERROR: 0xUHAD1JOB");
+                return null;
+            }
+            Console.WriteLine("Out of loop. ERROR: CODER IS WHACK");
+            return null;
+        }
+
+        private Players getNextPlayer(List<Players> allPlayers)
+        {
+            int indexcount = allPlayers.Count + 1;
+            int playerpos = allPlayers.IndexOf(this);
+            int nextplayer = playerpos + 1;
+            if (nextplayer >= indexcount)
+            {
+                nextplayer = 0;
+            }
+            else
+            {
+                nextplayer = playerpos + 1;
+            }
+            return allPlayers[nextplayer];
+        }
+
+    }
+
+    public class PlayerSelector
+    {
+        // pass player to class
+        // return correct player based on enum
+        //public powerUpName powerUp;
+        public Players currentPlayer;
+        // public Quiz quiz;
+        public List<Players> allPlayers;
+
+        
+
     }
 }

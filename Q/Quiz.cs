@@ -17,42 +17,29 @@ namespace Q
             players = Players.Assemble();
             questions = Questions.Assemble();
             ClearScreen();
-            int countTo3 = 0;
+            int currentPlayerGetsPowerUp = 0; // count to 3 to give every 3rd question a powerup
             foreach (Questions question in questions)
             {
-                countTo3++;
+                currentPlayerGetsPowerUp++;
                 foreach (Players player in players)
                 {
-                    
-                    if (countTo3 == 1)
+                    if (currentPlayerGetsPowerUp == 2)
                     {
-                        Random rnd = new Random();
-                        int chooseMeaPowerUp = rnd.Next(7);
-                        //countTo3 = 0;
-                        //player.addPowerup(powerUpName[]);
-                        Array powerupnames = typeof(powerUpName).GetEnumValues();
-                        powerUpName powerup = (powerUpName)powerupnames.GetValue(chooseMeaPowerUp);
-                        player.addPowerup(powerup);
-                        Console.WriteLine(powerup.ToString());
+                        currentPlayerGetsPowerUp = 0;
+                        player.earnRandomPowerup();
                     }
                     Console.WriteLine(player.getName + ". It's your turn to play. Please answer the following question A, B or C");
                     question.writeQuestion();
                     string useranswer = Questions.Ask(player, "Please type your answer below.");
                     player.answered = question.getAnswer(useranswer, question);
                     // use powerups
-                    string[] playerPowerUps = player.getPowerUpList;
-                    foreach (string powerupstring in playerPowerUps)
+                    if (player.checkForPowerups())
                     {
-                        Console.WriteLine(powerupstring);
+                        player.showPowerUps();
+                        PowerUps selectedpowerup = player.selectPowerUp();
+                        player.usePowerUp(selectedpowerup, players);
                     }
-                    Console.WriteLine("Use a powerup? (choose number)");
-                    string s = MyConsole.ReadLine("Test");
-                    int p = Int32.Parse(s);
-                    PlayerSelector playerSelector = new PlayerSelector();
-                    playerSelector.quiz = this;
-                    playerSelector.players = players;
-                    playerSelector.player = player;
-                    player.usePowerUp(player.listPowerUps[p], playerSelector);
+;
                     //
                     ClearScreen();
                     if (player.answered.test())
