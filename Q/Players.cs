@@ -78,7 +78,7 @@ namespace Q
             return name;
         }
 
-
+        //////////////////////  Gather player details and create list
         public static List<Players> Assemble()
         {
             List<Players> listPlayers = new List<Players>();
@@ -101,8 +101,9 @@ namespace Q
             return listPlayers;
         }
 
-        ///////////////////// PLAYER POWERUPS
-
+        //////////////////////////////   PLAYER POWERUPS  //////////////////////////////
+        
+        //////////////////////  Check if player has any powerups
         public bool checkForPowerups()
         {
             bool isNullOrEmpty = listPowerUps?.Any() != true;
@@ -119,6 +120,8 @@ namespace Q
             //}
         }
 
+        //////////////////////  Show list of player's available powerups
+
         public void showPowerUps()
         {
             string[] playerPowerUps = getPowerUpList;
@@ -132,6 +135,8 @@ namespace Q
                 }
             }
         }
+
+        //////////////////////  Player can select a powerup from a list
 
         public int selectPowerUp()
         {
@@ -154,6 +159,7 @@ namespace Q
             return selection;
         }
 
+        //////////////////////  Player wins a powerup
 
         public void earnRandomPowerup()
         {
@@ -164,6 +170,16 @@ namespace Q
             addPowerup(powerup);
             Console.WriteLine("You gained a " + powerup.ToString());
         }
+
+        public List<PowerUps> getPowerUpList2
+        {
+            get
+            {
+
+            }
+        }
+
+        //////////////////////  Get an array of strings representing available powerups
 
         public string[] getPowerUpList
         {
@@ -194,6 +210,8 @@ namespace Q
             PowerUps powerup = PowerUps.newPowerUp(name);
             listPowerUps.Add(powerup);
         }
+
+        //////////////////////  Use a powerup
 
         public void usePowerUp(PowerUps powerUp, List<Players> allPlayers)
         {
@@ -261,7 +279,7 @@ namespace Q
             listPowerUps.RemoveAt(listPowerUps.IndexOf(powerUp));
         }
 
-        ////////////////////////////// PLAYER SELECTOR
+        //////////////////////////////   PLAYER SELECTOR   //////////////////////////////
 
         private Players choosePlayer(List<Players> allPlayers)
         {

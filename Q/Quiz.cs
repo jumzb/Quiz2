@@ -21,8 +21,10 @@ namespace Q
 
             ///////////// MAIN LOOP
             int currentPlayerGetsPowerUp = 0; // count to 3 to give every 3rd question a powerup
+            int roundCounter = 0;
             foreach (Questions question in questions)
             {
+                roundCounter++;
                 currentPlayerGetsPowerUp++;
                 foreach (Players player in players)
                 {
@@ -50,6 +52,7 @@ namespace Q
                         }
                         question.showCorrectAnswer();
                         PauseandClear();
+
                         // Player powerup turn
                         if (player.checkForPowerups())
                         {
@@ -64,16 +67,17 @@ namespace Q
                                 Console.WriteLine("INVALID SELECTION LOL");
                             }
                         }
-                        // End of player turn
+                        // END OF PLAYER TURN
                     }
-                    else
+                    else // If skip flag is set
                     {
                         Console.WriteLine(player.getName + " skipped a turn :( sad day");
                         player.skipFlag = false;
                     }
-                    PauseandClear();
                 }
+                Console.WriteLine("End of round");
                 PauseandClear();
+
                 // END OF  ROUND - SCORES ON THE DOORS
                 Console.WriteLine("-- THE SCORES ON THE DOORS --");
                 foreach (Players player in players)
@@ -83,6 +87,7 @@ namespace Q
                 Console.Write("Next round. Press Enter"); PauseandClear();
             }
         }
+
         public static void ClearScreen()
         {
             Console.Clear();
