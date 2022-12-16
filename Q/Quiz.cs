@@ -59,8 +59,11 @@ namespace Q
                             {
                                 player.usePowerUp(player.listPowerUps[selectedpowerup], players);
                             }
+                            else
+                            {
+                                Console.WriteLine("INVALID SELECTION LOL");
+                            }
                         }
-
                         // End of player turn
                     }
                     else

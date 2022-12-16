@@ -141,7 +141,7 @@ namespace Q
             int selection = -1;
             if (Int32.TryParse(s, out int intpowerupselected))
             {
-                if (intpowerupselected <= listPowerUps.Count - 1) 
+                if ((intpowerupselected <= listPowerUps.Count) && (intpowerupselected > 0)) 
                 {
                     int powerupindex = intpowerupselected - 1;
                     selection = powerupindex;
