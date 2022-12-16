@@ -29,9 +29,8 @@ namespace Q
                     if (!player.skipFlag)
                     {
                         // Give powerups
-                        if (currentPlayerGetsPowerUp == 2)
+                        if (currentPlayerGetsPowerUp == 3)
                         {
-                            currentPlayerGetsPowerUp = 0;
                             player.earnRandomPowerup();
                         }
                         // Player turn
@@ -55,8 +54,11 @@ namespace Q
                         if (player.checkForPowerups())
                         {
                             player.showPowerUps();
-                            PowerUps selectedpowerup = player.selectPowerUp();
-                            player.usePowerUp(selectedpowerup, players);
+                            int selectedpowerup = player.selectPowerUp();
+                            if (selectedpowerup > -1)
+                            {
+                                player.usePowerUp(player.listPowerUps[selectedpowerup], players);
+                            }
                         }
 
                         // End of player turn

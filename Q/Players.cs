@@ -133,17 +133,27 @@ namespace Q
             }
         }
 
-        public PowerUps selectPowerUp()
+        public int selectPowerUp()
         {
             Console.WriteLine("Use a powerup? (choose number)");
+
             string s = Console.ReadLine();
+            int selection = -1;
             if (Int32.TryParse(s, out int intpowerupselected))
             {
-                if (intpowerupselected <= listPowerUps.Count - 1) ;
+                if (intpowerupselected <= listPowerUps.Count - 1) 
+                {
+                    int powerupindex = intpowerupselected - 1;
+                    selection = powerupindex;
+                }
+                else
+                {
+                    selection = -1;
+                }
             }
-            int powerupindex = intpowerupselected - 1;
-            return listPowerUps[powerupindex];
+            return selection;
         }
+
 
         public void earnRandomPowerup()
         {
@@ -249,7 +259,6 @@ namespace Q
             }
 
             listPowerUps.RemoveAt(listPowerUps.IndexOf(powerUp));
-            Quiz.ClearScreen();
         }
 
         ////////////////////////////// PLAYER SELECTOR
